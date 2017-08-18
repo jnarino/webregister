@@ -7,14 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import org.hibernate.Hibernate;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 
 import co.com.telematica.register.matriz.dominio.Register;
 
@@ -34,6 +27,7 @@ public class RegistroHibernate {
 		return instance;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Register> encontrarRegistro() throws Exception {
 		List<Register> listaRegister = null;
 		try {
