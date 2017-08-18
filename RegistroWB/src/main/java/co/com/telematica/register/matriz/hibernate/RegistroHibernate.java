@@ -36,6 +36,7 @@ public class RegistroHibernate {
 			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			@SuppressWarnings("deprecation")
 			Criteria criterios = session.createCriteria(Register.class)
 					.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			listaRegister = criterios.list();
