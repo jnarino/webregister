@@ -8,8 +8,10 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
 
 import co.com.telematica.register.matriz.dominio.Register;
+import co.com.telenatica.commons.hibernate.AnnotationsFactory;
 
 public class RegistroHibernate {
 
@@ -27,21 +29,19 @@ public class RegistroHibernate {
 		return instance;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Register> encontrarRegistro() throws Exception {
 		List<Register> listaRegister = null;
 		try {
+			Session session = null;
 
-			// SessionFactory fabrica = AnnotationsFactory.getSessionFactory();
-			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-			Session session = sessionFactory.openSession();
+			session = AnnotationsFactory.getInstance().getSession();
+
 			session.beginTransaction();
-			@SuppressWarnings("deprecation")
-			Criteria criterios = session.createCriteria(Register.class)
-					.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-			listaRegister = criterios.list();
-			session.close();
-
+			 Criteria criterios = session.createCriteria(Register.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+	            criterios.addOrder(Order.desc("id"));
+	            listaRegister = criterios.list();
+	            session.close();
+	            return listaRegister;
 		} catch (Exception e) {
 			log.error("Problema en conexión a base de datos", e);
 		}

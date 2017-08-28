@@ -1,16 +1,15 @@
 package co.com.telematica.register.session.controller;
 
 import java.io.Serializable;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import co.com.telematica.register.session.dominio.Usuarios;
 import co.com.telematica.register.session.model.SessionModel;
 
-@Named
-@ViewScoped
+@ManagedBean
+@SessionScoped
 public class SessionController implements Serializable {
 
 	private Usuarios usuarios;
@@ -23,24 +22,26 @@ public class SessionController implements Serializable {
 		securityAccess = false;
 	}
 
-	public void iniciarSession() {
+	public String iniciarSession() {
 		Usuarios usuariosReturn;
 		SessionModel sessionModel = new SessionModel();
-		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+
+		String redireccion = null;
 
 		try {
 
 			usuariosReturn = sessionModel.encontrarUsuario(usuarios);
 			if (usuariosReturn != null) {
 				securityAccess = true;
-				System.out.println("CONECXION EXITOSA");
-				context.redirect("/RegistroWB/protegido/NewFile.xhtml");
+				System.out.println("*****************************login correcto*************************");
+				redireccion = "/protegido/registerList?faces-redirect=true";
+
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
-		return;
+		return redireccion;
 	}
 
 	public Usuarios getUsuarios() {
