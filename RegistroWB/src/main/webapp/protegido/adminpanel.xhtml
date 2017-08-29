@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -9,30 +10,81 @@
 	<f:loadBundle basename="register" var="reg" />
 </h:head>
 <body>
-<p:panelGrid>
-</p:panelGrid>
-	<h:form id="registros">
-		<p:dataTable var="register"
-			value="#{registerController.listaRegistros}" id="resgitros_lista">
-			<p:column headerText="#{reg['labelview.filename']}"
-				class="texto_datatable">
-				<p:outputLabel value="#{register.fileName}" />
+	<p:panelGrid id="item_input">
+		<f:facet name="header">
+			<p:row>
+				<p:column colspan="10" class="titulo">
+					<p:outputLabel value="#{reg['bctitulo.user']}" />
+				</p:column>
+			</p:row>
+		</f:facet>
+		<p:row>
+			<p:column>
+				<p:outputLabel value="#{reg['labelview.firstname']}" rendered="true" />
 			</p:column>
-			<p:column headerText="#{reg['labelview.filesize']}"
-				class="texto_datatable">
-				<p:outputLabel value="#{register.fileSize}" />
+			<p:column>
+				<p:inputText value="#{adminController.usuarios.firstName}" />
 			</p:column>
-			<p:column headerText="#{reg['labelview.filemodified']}"
-				class="texto_datatable">
-				<p:outputLabel value="#{register.fileModify}" />
+			<p:column>
+				<p:outputLabel value="#{reg['labelview.middlename']}"
+					rendered="true" />
 			</p:column>
-			<p:column headerText="#{reg['labelview.owner']}"
+			<p:column>
+				<p:inputText value="#{adminController.usuarios.middelName}" />
+			</p:column>
+			<p:column>
+				<p:outputLabel value="#{reg['labelview.lastname']}" rendered="true" />
+			</p:column>
+			<p:column>
+				<p:inputText value="#{adminController.usuarios.lastName}" />
+			</p:column>
+			<p:column>
+				<p:outputLabel value="#{reg['labelview.ownerid']}" rendered="true" />
+			</p:column>
+			<p:column>
+				<p:inputText value="#{adminController.usuarios.ownerId}" />
+			</p:column>
+			<p:column>
+				<p:outputLabel value="#{reg['labelview.username']}" rendered="true" />
+			</p:column>
+			<p:column>
+				<p:inputText value="#{adminController.usuarios.username}" />
+			</p:column>
+			<p:column>
+				<p:outputLabel value="#{reg['labelview.password']}" rendered="true" />
+			</p:column>
+			<p:column>
+				<p:inputText value="#{adminController.usuarios.password}" />
+			</p:column>
+		</p:row>
+
+	</p:panelGrid>
+	<h:form id="usuarios">
+		<p:dataTable var="usuarios" value="#{adminController.usuarios}"
+			id="usuarios_lista">
+			<p:column headerText="#{reg['labelview.firstname']}"
 				class="texto_datatable">
-				<p:outputLabel value="#{register.owner}" />
+				<p:outputLabel value="#{usuarios.firstName}" />
+			</p:column>
+			<p:column headerText="#{reg['labelview.middlename']}"
+				class="texto_datatable">
+				<p:outputLabel value="#{usuarios.middelName}" />
+			</p:column>
+			<p:column headerText="#{reg['labelview.lastname']}"
+				class="texto_datatable">
+				<p:outputLabel value="#{usuarios.lastName}" />
+			</p:column>
+			<p:column headerText="#{reg['labelview.ownerid']}"
+				class="texto_datatable">
+				<p:outputLabel value="#{usuarios.ownerId}" />
+			</p:column>
+			<p:column headerText="#{reg['labelview.username']}"
+				class="texto_datatable">
+				<p:outputLabel value="#{usuarios.username}" />
 			</p:column>
 			<p:column headerText="#{reg['labelview.creationdate']}"
 				class="texto_datatable">
-				<p:outputLabel value="#{register.creationDate}" />
+				<p:outputLabel value="#{usuarios.creatioDate}" />
 			</p:column>
 		</p:dataTable>
 

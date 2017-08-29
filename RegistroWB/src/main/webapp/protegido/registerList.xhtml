@@ -9,7 +9,7 @@
 	<f:loadBundle basename="register" var="reg" />
 </h:head>
 <body>
-	<h:form id="registros">
+	<h:form enctype="multipart/form-data" id="registros">
 		<p:dataTable var="register"
 			value="#{registerController.listaRegistros}" id="resgitros_lista">
 			<p:column headerText="#{reg['labelview.filename']}"
@@ -37,7 +37,7 @@
 			skinSimple="true" />
 
 		<p:commandButton value="Submit" ajax="false"
-			actionListener="#{registerController.guardarFile()}" disabled="true" />
+			action="#{registerController.upload()}" />
 
 	</h:form>
 </body>

@@ -25,6 +25,7 @@ public class SessionController implements Serializable {
 	public String iniciarSession() {
 		Usuarios usuariosReturn;
 		SessionModel sessionModel = new SessionModel();
+		String admin = "admin";
 
 		String redireccion = null;
 
@@ -32,9 +33,16 @@ public class SessionController implements Serializable {
 
 			usuariosReturn = sessionModel.encontrarUsuario(usuarios);
 			if (usuariosReturn != null) {
-				securityAccess = true;
-				System.out.println("*****************************login correcto*************************");
-				redireccion = "/protegido/registerList?faces-redirect=true";
+				String username = usuariosReturn.getUsername();
+				if (username.trim() == admin.trim()) {
+					securityAccess = true;
+					System.out.println("*****************************login admin*************************");
+					redireccion = "/protegido/adminpanel?faces-redirect=true";
+				} else {
+					securityAccess = true;
+					System.out.println("*****************************login correcto*************************");
+					redireccion = "/protegido/registerList?faces-redirect=true";
+				}
 
 			}
 
