@@ -34,7 +34,7 @@ public class SessionController implements Serializable {
 			usuariosReturn = sessionModel.encontrarUsuario(usuarios);
 			if (usuariosReturn != null) {
 				String username = usuariosReturn.getUsername();
-				if (username.trim() == admin.trim()) {
+				if (username.trim().equals(admin)) {
 					securityAccess = true;
 					System.out.println("*****************************login admin*************************");
 					redireccion = "/protegido/adminpanel?faces-redirect=true";

@@ -6,7 +6,7 @@
 	<session-factory>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.password">redhat</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://10.131.137.206:5432/postgres</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://10.131.137.150:5432/postgres</property>
 		<property name="hibernate.connection.username">jnarino</property>
 		<property name="hibernate.default_schema">telematica</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
